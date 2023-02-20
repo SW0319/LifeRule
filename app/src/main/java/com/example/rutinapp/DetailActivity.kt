@@ -18,6 +18,9 @@ class DetailActivity : AppCompatActivity() {
     lateinit var rutinTitle: EditText
     lateinit var rutinContents: EditText
     lateinit var toggleLists : Array<ToggleButton>
+    var modifierMode = false
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_detail)
@@ -29,6 +32,7 @@ class DetailActivity : AppCompatActivity() {
             ,findViewById(R.id.detail_satday),findViewById(R.id.detail_sunday))
 
         setBottomButtonClicked()
+        checkIsModifierMode()
     }
     private fun setOnDayButtonClicked(view: View) {
         val checked = (view as ToggleButton).isChecked
@@ -49,13 +53,27 @@ class DetailActivity : AppCompatActivity() {
                     Toast.makeText(this,"제목은 반드시 들어가야 합니다.",Toast.LENGTH_SHORT).show()
                 else
                 {
-                    DataModel.rutinViewModel.addItem(Rutin(0,titleText,contentsText,toggleLists[0].isChecked
-                    ,toggleLists[1].isChecked,toggleLists[2].isChecked,toggleLists[3].isChecked,toggleLists[4].isChecked
-                    ,toggleLists[5].isChecked,toggleLists[6].isChecked
-                    ))
+                    val rutin :Rutin = Rutin(0,titleText,contentsText,toggleLists[0].isChecked
+                        ,toggleLists[1].isChecked,toggleLists[2].isChecked,toggleLists[3].isChecked,toggleLists[4].isChecked
+                        ,toggleLists[5].isChecked,toggleLists[6].isChecked)
+                    if (!modifierMode)
+                        DataModel.rutinViewModel.addItem(rutin)
+                    else
+                        DataModel.rutinViewModel.addItem(rutin)
+
                     finish()
                 }
         }
     }
 
+    private fun checkIsModifierMode()
+    {
+        val datas: Bundle? = intent.extras
+        if(datas != null)
+        {
+            rutinTitle.setText(datas.get("title").toString())
+            rutinContents.setText(datas.get("contents").toString())
+            modifierMode = true
+        }
+    }
 }

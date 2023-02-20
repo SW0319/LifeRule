@@ -47,17 +47,74 @@
             android:fontFamily="@font/nexon_lv1_gothic_otf"
             />
 
-        <TextView
-            android:layout_marginLeft="20dp"
+        <LinearLayout
             android:layout_width="130dp"
             android:layout_height="40dp"
             app:layout_constraintLeft_toRightOf="@id/content"
             app:layout_constraintBottom_toBottomOf="@id/content"
             app:layout_constraintTop_toTopOf="@id/content"
-            android:text="일 월 화 수 목 금 토"
-            android:textSize="14sp"
-            android:fontFamily="@font/nexon_lv1_gothic_otf"
-        />
+            android:layout_marginLeft="20dp"
+            android:orientation="horizontal"
+            >
+            <TextView
+                android:id="@+id/RutinItem_sun"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="일"
+                android:textSize="14sp"
+                android:fontFamily="@font/nexon_lv1_gothic_otf"
+                android:layout_marginRight="5dp" />
+            <TextView
+                android:id="@+id/RutinItem_mon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="월"
+                android:textSize="14sp"
+                android:layout_marginRight="5dp"
+                android:fontFamily="@font/nexon_lv1_gothic_otf" />
+            <TextView
+                android:id="@+id/RutinItem_tue"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="화"
+                android:textSize="14sp"
+                android:layout_marginRight="5dp"
+                android:fontFamily="@font/nexon_lv1_gothic_otf" />
+            <TextView
+                android:id="@+id/RutinItem_wed"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="수"
+                android:textSize="14sp"
+                android:layout_marginRight="5dp"
+                android:fontFamily="@font/nexon_lv1_gothic_otf" />
+            <TextView
+                android:id="@+id/RutinItem_thu"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="목"
+                android:textSize="14sp"
+                android:layout_marginRight="5dp"
+                android:fontFamily="@font/nexon_lv1_gothic_otf" />
+            <TextView
+                android:id="@+id/RutinItem_fri"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="금"
+                android:textSize="14sp"
+                android:layout_marginRight="5dp"
+                android:fontFamily="@font/nexon_lv1_gothic_otf" />
+            <TextView
+                android:id="@+id/RutinItem_sat"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="토"
+                android:textSize="14sp"
+                android:layout_marginRight="5dp"
+                android:fontFamily="@font/nexon_lv1_gothic_otf" />
+        </LinearLayout>
+
+
         <Switch
             android:layout_marginLeft="0dp"
             android:gravity="top"
@@ -69,7 +126,6 @@
             android:switchMinWidth="60dp"
             />
 
-
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 
@@ -79,4 +135,12 @@
 <!--        android:layout_height="wrap_content"-->
 <!--        android:layout_margin="@dimen/text_margin"-->
 <!--        android:textAppearance="?attr/textAppearanceListItem" />-->
+
+    <TextView
+        android:id="@+id/rutinItem_id"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="0"
+        android:visibility="gone"
+        />
 </LinearLayout>
