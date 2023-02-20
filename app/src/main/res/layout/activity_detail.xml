@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<androidx.coordinatorlayout.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".DetailActivity">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+
+    >
+
+    <EditText
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:id="@+id/detail_title"
+        android:layout_width="300dp"
+        android:layout_height="50dp"
+        android:hint="루틴 제목"
+        />
+
+    <EditText
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/detail_title"
+        android:id="@+id/detail_contents"
+        android:layout_width="300dp"
+        android:layout_height="50dp"
+        android:hint="루틴 내용"
+        />
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/detail_contents"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:paddingHorizontal="10dp"
+        >
+
+        <ToggleButton
+            android:id="@+id/detail_sunday"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:textOff="일"
+            android:textOn="일2"
+            android:background="@color/white"
+            style="?android:borderlessButtonStyle"
+            />
+
+        <ToggleButton
+            android:id="@+id/detail_monday"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:textOff="월"
+            android:textOn="월2"
+            android:background="@color/white"
+            style="?android:borderlessButtonStyle"
+            />
+
+        <ToggleButton
+            android:id="@+id/detail_tueday"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:textOff="화"
+            android:textOn="화2"
+            android:background="@color/white"
+            style="?android:borderlessButtonStyle"
+            />
+
+        <ToggleButton
+            android:id="@+id/detail_wedday"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:textOff="수"
+            android:textOn="수2"
+            android:background="@color/white"
+            style="?android:borderlessButtonStyle"
+            />
+
+        <ToggleButton
+            android:id="@+id/detail_thuday"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:textOff="목"
+            android:textOn="목2"
+            android:background="@color/white"
+            style="?android:borderlessButtonStyle"
+            />
+
+        <ToggleButton
+            android:id="@+id/detail_friday"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:textOff="금"
+            android:textOn="금2"
+            android:background="@color/white"
+            style="?android:borderlessButtonStyle"
+            />
+
+        <ToggleButton
+            android:id="@+id/detail_satday"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:textOff="토"
+            android:textOn="토2"
+            android:background="@color/white"
+            style="?android:borderlessButtonStyle"
+            />
+
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        >
+
+        <Button
+            style="?android:borderlessButtonStyle"
+            android:id="@+id/detail_cancel"
+            android:layout_width="wrap_content"
+            android:layout_weight="1"
+            android:layout_marginRight="10dp"
+            android:layout_height="wrap_content"
+            android:text="취소"
+            android:textColor="@color/black"
+            android:background="@color/main_background"
+            />
+
+        <Button
+            android:id="@+id/detail_complete"
+            style="?android:borderlessButtonStyle"
+            android:layout_width="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="추가"
+            android:textColor="@color/black"
+            android:background="@color/main_background"
+            />
+
+    </LinearLayout>
+
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

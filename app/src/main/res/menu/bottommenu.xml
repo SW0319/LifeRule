@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:title="루틴"
+        android:iconTint="@color/black"
+        android:id="@+id/bottom_gotoRutin"
+        />
+    <item
+        android:id="@+id/bottom_anaytics"
+        android:title="통계"
+        android:icon="@drawable/ic_launcher_foreground"
+        />
+
+    <item
+        android:id="@+id/bottom_more"
+        android:title="더보기"
+        android:icon="@drawable/ic_launcher_background"
+        />
+
+</menu>

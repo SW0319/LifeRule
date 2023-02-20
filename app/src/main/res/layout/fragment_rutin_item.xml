@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/item_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_gravity="center_horizontal"
+    >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:background="@color/main_background"
+        >
+    </LinearLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/innerLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/round_shape"
+        android:paddingHorizontal="10dp"
+        >
+
+        <TextView
+            android:id="@+id/title"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:layout_width="320dp"
+            android:layout_height="35dp"
+            android:text="루틴 제목이나 요약을 작성하는 곳"
+            android:textSize="22sp"
+            android:fontFamily="@font/nexon_lv1_gothic_otf"
+            />
+        
+        <TextView
+            android:id="@+id/content"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/title"
+            android:layout_marginTop="10dp"
+            android:layout_width="220dp"
+            android:layout_height="80dp"
+            android:text="@string/exampleString"
+            android:textSize="14sp"
+            android:fontFamily="@font/nexon_lv1_gothic_otf"
+            />
+
+        <TextView
+            android:layout_marginLeft="20dp"
+            android:layout_width="130dp"
+            android:layout_height="40dp"
+            app:layout_constraintLeft_toRightOf="@id/content"
+            app:layout_constraintBottom_toBottomOf="@id/content"
+            app:layout_constraintTop_toTopOf="@id/content"
+            android:text="일 월 화 수 목 금 토"
+            android:textSize="14sp"
+            android:fontFamily="@font/nexon_lv1_gothic_otf"
+        />
+        <Switch
+            android:layout_marginLeft="0dp"
+            android:gravity="top"
+            app:layout_constraintLeft_toRightOf="@id/title"
+            app:layout_constraintTop_toTopOf="@id/title"
+            android:id="@+id/switch1"
+            android:layout_width="60dp"
+            android:layout_height="35dp"
+            android:switchMinWidth="60dp"
+            />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+<!--    <TextView-->
+<!--        android:id="@+id/content"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_margin="@dimen/text_margin"-->
+<!--        android:textAppearance="?attr/textAppearanceListItem" />-->
+</LinearLayout>
