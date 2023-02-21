@@ -27,9 +27,9 @@ class DetailActivity : AppCompatActivity() {
 
         rutinTitle  = findViewById(R.id.detail_title)
         rutinContents =  findViewById(R.id.detail_contents)
-        toggleLists = arrayOf<ToggleButton>(findViewById(R.id.detail_monday),findViewById(R.id.detail_tueday),
+        toggleLists = arrayOf<ToggleButton>(findViewById(R.id.detail_sunday),findViewById(R.id.detail_monday),findViewById(R.id.detail_tueday),
             findViewById(R.id.detail_wedday),findViewById(R.id.detail_thuday),findViewById(R.id.detail_friday)
-            ,findViewById(R.id.detail_satday),findViewById(R.id.detail_sunday))
+            ,findViewById(R.id.detail_satday))
 
         setBottomButtonClicked()
         checkIsModifierMode()
@@ -73,6 +73,15 @@ class DetailActivity : AppCompatActivity() {
         {
             rutinTitle.setText(datas.get("title").toString())
             rutinContents.setText(datas.get("contents").toString())
+            val r = arrayOf("sunday","monday","tueday","wedday","thuday","friday","satday")
+
+            var cnt:Int = -1
+            for (a in r.iterator())
+            {
+                cnt++
+                if(datas.getBoolean(a))
+                    toggleLists[cnt].toggle()
+            }
             modifierMode = true
         }
     }

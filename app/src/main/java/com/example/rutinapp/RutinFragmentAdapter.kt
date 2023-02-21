@@ -19,8 +19,13 @@ import com.example.rutinapp.placeholder.DataModel
  * TODO: Replace the implementation with code for your data type.
  */
 class RutinFragmentAdapter(var values: CustomLiveData<Rutin>) : RecyclerView.Adapter<RutinFragmentAdapter.ViewHolder>() {
+
+    var selectedTextColor = R.color.purple_200
+    var compareColor: Int = 0
+
 //매개변수로 PlaceholderItem을 받음 --> PlaceholderContent의 Data class
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
+    compareColor = ContextCompat.getColor(parent.context,selectedTextColor)
     //viewType 형태의 아이템 뷰를 위한 뷰홀더 객체를 생성한다.
         Log.e("test","MyRutinRecyclerViewAdapter.onCreateViewHolder()")
         return ViewHolder(
@@ -44,19 +49,19 @@ class RutinFragmentAdapter(var values: CustomLiveData<Rutin>) : RecyclerView.Ada
         holder.idView.text = item.title
         holder.contentView.text = item.content
         if(item.monday)
-            holder.monday.setTextColor(ContextCompat.getColor(holder.contentView.context,R.color.purple_200))
+            holder.monday.setTextColor(ContextCompat.getColor(holder.contentView.context,selectedTextColor))
         if(item.tueday)
-            holder.tueday.setTextColor(ContextCompat.getColor(holder.contentView.context,R.color.purple_200))
+            holder.tueday.setTextColor(ContextCompat.getColor(holder.contentView.context,selectedTextColor))
         if(item.wedday)
-            holder.wedday.setTextColor(ContextCompat.getColor(holder.contentView.context,R.color.purple_200))
+            holder.wedday.setTextColor(ContextCompat.getColor(holder.contentView.context,selectedTextColor))
         if(item.thuday)
-            holder.thuday.setTextColor(ContextCompat.getColor(holder.contentView.context,R.color.purple_200))
+            holder.thuday.setTextColor(ContextCompat.getColor(holder.contentView.context,selectedTextColor))
         if(item.friday)
-            holder.friday.setTextColor(ContextCompat.getColor(holder.contentView.context,R.color.purple_200))
+            holder.friday.setTextColor(ContextCompat.getColor(holder.contentView.context,selectedTextColor))
         if(item.satday)
-            holder.satday.setTextColor(ContextCompat.getColor(holder.contentView.context,R.color.purple_200))
+            holder.satday.setTextColor(ContextCompat.getColor(holder.contentView.context,selectedTextColor))
         if(item.sunday)
-            holder.sunday.setTextColor(ContextCompat.getColor(holder.contentView.context,R.color.purple_200))
+            holder.sunday.setTextColor(ContextCompat.getColor(holder.contentView.context,selectedTextColor))
     }
 
 //    override fun getItemCount(): Int = values.
@@ -72,8 +77,16 @@ class RutinFragmentAdapter(var values: CustomLiveData<Rutin>) : RecyclerView.Ada
 
             rootView.setOnLongClickListener {
                 val intent = Intent(rootView.context,DetailActivity::class.java)
+//                Log.e("test","current : ${binding.RutinItemSun.currentTextColor} 이고 selected : ${ContextCompat.getColor(binding.itemParent.context,R.color.purple_200}")
                 intent.putExtra("title",binding.title.text)
                 intent.putExtra("contents",binding.content.text)
+                intent.putExtra("sunday",binding.RutinItemSun.currentTextColor == compareColor)
+                intent.putExtra("monday",binding.RutinItemMon.currentTextColor == compareColor)
+                intent.putExtra("tueday",binding.RutinItemTue.currentTextColor == compareColor)
+                intent.putExtra("wedday",binding.RutinItemWed.currentTextColor == compareColor)
+                intent.putExtra("thuday",binding.RutinItemThu.currentTextColor == compareColor)
+                intent.putExtra("friday",binding.RutinItemFri.currentTextColor == compareColor)
+                intent.putExtra("satday",binding.RutinItemSat.currentTextColor == compareColor)
                 rootView.context.startActivity(intent)
                 return@setOnLongClickListener(true)
             }
