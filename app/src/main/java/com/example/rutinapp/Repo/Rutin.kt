@@ -8,13 +8,13 @@ import androidx.room.PrimaryKey
 data class Rutin(
 
     @PrimaryKey(autoGenerate = true) val uid: Int = 0,
-    val title: String?,
-    val content: String?,
-    val monday: Boolean = true,
-    val tueday: Boolean = true,
-    val wedday: Boolean = true,
-    val thuday: Boolean = true,
-    val friday: Boolean = true,
-    val satday: Boolean = true,
-    val sunday: Boolean = true,
+    var title: String?,
+    var content: String?,
+    var monday: Boolean = true,
+    var tueday: Boolean = true,
+    var wedday: Boolean = true,
+    var thuday: Boolean = true,
+    var friday: Boolean = true,
+    var satday: Boolean = true,
+    var sunday: Boolean = true,
 )

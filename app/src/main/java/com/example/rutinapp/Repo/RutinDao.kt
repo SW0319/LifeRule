@@ -3,6 +3,7 @@ package com.example.rutinapp.Repo
 import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.Query
+import androidx.room.Update
 
 @Dao
 interface RutinDao {
@@ -15,5 +16,11 @@ interface RutinDao {
 
     @Insert
     fun add(rutin : Rutin)
+
+    @Update
+    fun update(rutin:Rutin)
+
+    @Query("SELECT * from RUTINLIST where uid = :number")
+    fun selectById(number:Int) : Rutin
 
 }

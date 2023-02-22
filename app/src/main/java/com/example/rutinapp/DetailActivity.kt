@@ -12,6 +12,9 @@ import android.widget.ToggleButton
 import com.example.rutinapp.Repo.Rutin
 import com.example.rutinapp.placeholder.DataModel
 import com.example.rutinapp.placeholder.RutinViewModel
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 
 class DetailActivity : AppCompatActivity() {
 
@@ -19,7 +22,7 @@ class DetailActivity : AppCompatActivity() {
     lateinit var rutinContents: EditText
     lateinit var toggleLists : Array<ToggleButton>
     var modifierMode = false
-
+    lateinit var rutin: Rutin
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -49,17 +52,24 @@ class DetailActivity : AppCompatActivity() {
         findViewById<Button>(R.id.detail_complete).setOnClickListener {
             val titleText : String = rutinTitle.text.toString()
             val contentsText: String = rutinContents.text.toString()
-                if(titleText == "")
+            if(titleText == "")
                     Toast.makeText(this,"제목은 반드시 들어가야 합니다.",Toast.LENGTH_SHORT).show()
                 else
                 {
-                    val rutin :Rutin = Rutin(0,titleText,contentsText,toggleLists[0].isChecked
+                    val newRutin :Rutin = Rutin(0,titleText,contentsText,toggleLists[0].isChecked
                         ,toggleLists[1].isChecked,toggleLists[2].isChecked,toggleLists[3].isChecked,toggleLists[4].isChecked
                         ,toggleLists[5].isChecked,toggleLists[6].isChecked)
                     if (!modifierMode)
-                        DataModel.rutinViewModel.addItem(rutin)
+                        DataModel.rutinViewModel.addItem(newRutin)
                     else
-                        DataModel.rutinViewModel.addItem(rutin)
+                    {
+                        rutin.title = titleText
+                        rutin.content = contentsText
+
+                        DataModel.rutinViewModel.updateItem(rutin)
+
+                    }
+
 
                     finish()
                 }
@@ -71,17 +81,19 @@ class DetailActivity : AppCompatActivity() {
         val datas: Bundle? = intent.extras
         if(datas != null)
         {
-            rutinTitle.setText(datas.get("title").toString())
-            rutinContents.setText(datas.get("contents").toString())
-            val r = arrayOf("sunday","monday","tueday","wedday","thuday","friday","satday")
-
-            var cnt:Int = -1
-            for (a in r.iterator())
-            {
-                cnt++
-                if(datas.getBoolean(a))
-                    toggleLists[cnt].toggle()
+            rutin = DataModel.rutinViewModel.searchItem(datas.get("uid") as Int)
+            CoroutineScope(Dispatchers.IO).launch {
+                rutinTitle.setText(rutin.title)
+                rutinContents.setText(rutin.content)
+                toggleLists[0].isChecked = rutin.sunday
+                toggleLists[1].isChecked = rutin.monday
+                toggleLists[2].isChecked = rutin.tueday
+                toggleLists[3].isChecked = rutin.wedday
+                toggleLists[4].isChecked = rutin.thuday
+                toggleLists[5].isChecked = rutin.friday
+                toggleLists[6].isChecked = rutin.satday
             }
+
             modifierMode = true
         }
     }

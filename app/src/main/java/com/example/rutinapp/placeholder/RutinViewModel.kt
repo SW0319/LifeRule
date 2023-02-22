@@ -56,4 +56,13 @@ class RutinViewModel(context: Context){ //선언과 동시에 초기화, MVVM �
             title = title, content = context, monday = mon, tueday = tue, wedday = wed, thuday = thu, friday = fri, satday = sat, sunday = sun
         )
     }
+
+    fun searchItem(uid: Int): Rutin {
+        var rutin: Rutin
+
+        runBlocking(Dispatchers.IO) {
+            rutin =DataModel.dao.selectById(uid)
+        }
+        return rutin
+    }
 }

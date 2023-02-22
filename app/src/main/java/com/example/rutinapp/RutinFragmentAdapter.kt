@@ -48,6 +48,7 @@ class RutinFragmentAdapter(var values: CustomLiveData<Rutin>) : RecyclerView.Ada
         val item = values.get(position)
         holder.idView.text = item.title
         holder.contentView.text = item.content
+        holder.itemID.text = item.uid.toString()
         if(item.monday)
             holder.monday.setTextColor(ContextCompat.getColor(holder.contentView.context,selectedTextColor))
         if(item.tueday)
@@ -78,15 +79,7 @@ class RutinFragmentAdapter(var values: CustomLiveData<Rutin>) : RecyclerView.Ada
             rootView.setOnLongClickListener {
                 val intent = Intent(rootView.context,DetailActivity::class.java)
 //                Log.e("test","current : ${binding.RutinItemSun.currentTextColor} 이고 selected : ${ContextCompat.getColor(binding.itemParent.context,R.color.purple_200}")
-                intent.putExtra("title",binding.title.text)
-                intent.putExtra("contents",binding.content.text)
-                intent.putExtra("sunday",binding.RutinItemSun.currentTextColor == compareColor)
-                intent.putExtra("monday",binding.RutinItemMon.currentTextColor == compareColor)
-                intent.putExtra("tueday",binding.RutinItemTue.currentTextColor == compareColor)
-                intent.putExtra("wedday",binding.RutinItemWed.currentTextColor == compareColor)
-                intent.putExtra("thuday",binding.RutinItemThu.currentTextColor == compareColor)
-                intent.putExtra("friday",binding.RutinItemFri.currentTextColor == compareColor)
-                intent.putExtra("satday",binding.RutinItemSat.currentTextColor == compareColor)
+                intent.putExtra("uid",binding.rutinItemId.text.toString().toInt())
                 rootView.context.startActivity(intent)
                 return@setOnLongClickListener(true)
             }
@@ -102,6 +95,7 @@ class RutinFragmentAdapter(var values: CustomLiveData<Rutin>) : RecyclerView.Ada
         val friday: TextView = binding.RutinItemFri
         val satday: TextView = binding.RutinItemSat
         val sunday: TextView = binding.RutinItemSun
+        val itemID: TextView = binding.rutinItemId
 
 
         override fun toString(): String {
