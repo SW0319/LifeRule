@@ -20,16 +20,6 @@ class RutinViewModel(context: Context){ //선언과 동시에 초기화, MVVM �
     val lists : CustomLiveData<Rutin> = CustomLiveData()
     private val COUNT = 5  //item Count
 
-     init {
-        // Add some sample items.
-             readItem()
-//             for (i in 1..COUNT)
-//             {
-//                 addItem(createRutinItem("제목 + $i","내용"))
-//            }
-
-
-    }
 
     fun addItem(item: Rutin) {
 
@@ -42,15 +32,22 @@ class RutinViewModel(context: Context){ //선언과 동시에 초기화, MVVM �
             Log.e("test","아이템 추가")
     }
 
+    fun updateItem(item: Rutin)
+    {
+
+        CoroutineScope(Dispatchers.IO).launch {
+            DataModel.dao.update(item)
+            Log.e("test","수정 완료")
+        }
+    }
 
     fun readItem()
     {
-        runBlocking(Dispatchers.IO) {
+        CoroutineScope(Dispatchers.IO).launch {
             lists.addAll(DataModel.dao.getAllLists())
 
         }
     }
-
 
     private fun createRutinItem(title: String, context: String, mon: Boolean = true, tue: Boolean  = true,
                                 wed: Boolean = true,thu: Boolean = true,fri: Boolean = true,sat: Boolean = true,sun: Boolean  = true) : Rutin
