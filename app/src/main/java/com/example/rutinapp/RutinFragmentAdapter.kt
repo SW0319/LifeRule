@@ -41,8 +41,6 @@ class RutinFragmentAdapter(var values: CustomLiveData<Rutin>) : RecyclerView.Ada
 
     }
 
-
-
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {  //position에 해당되는 데이터를 뷰홀더에 표기한다
         Log.e("test","MyRutinRecyclerViewAdapter.onBindViewHolder()")
         val item = values.get(position)
@@ -64,8 +62,6 @@ class RutinFragmentAdapter(var values: CustomLiveData<Rutin>) : RecyclerView.Ada
         if(item.sunday)
             holder.sunday.setTextColor(ContextCompat.getColor(holder.contentView.context,selectedTextColor))
     }
-
-//    override fun getItemCount(): Int = values.
 
 
     inner class ViewHolder(binding: FragmentRutinItemBinding) : RecyclerView.ViewHolder(binding.root) {
@@ -96,7 +92,7 @@ class RutinFragmentAdapter(var values: CustomLiveData<Rutin>) : RecyclerView.Ada
         val satday: TextView = binding.RutinItemSat
         val sunday: TextView = binding.RutinItemSun
         val itemID: TextView = binding.rutinItemId
-
+        //TODO 해야할 것은 루틴 추가한 후 바로 수정하려할 시 튕기는 에러 + 수정 시 요일도 바뀌도록 해야한다.
 
         override fun toString(): String {
             return super.toString() + " '" + contentView.text + "'"

@@ -11,6 +11,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.LifecycleOwner
 import com.example.rutinapp.placeholder.DataModel
+import com.example.rutinapp.placeholder.RutinViewModel
 
 /**
  * A fragment representing a list of Items.
@@ -47,8 +48,8 @@ class RutinFragment : Fragment() {
                          {
                             Log.e("test","observe")
                              adapter?.notifyDataSetChanged()
-                         }
 
+                         }
                 }
             }
         }

@@ -21,11 +21,13 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
         setSupportActionBar(findViewById(R.id.main_toolbar))
 
-        DataModel.init(this)
+        var rutinFragment = RutinFragment.newInstance(1)
+
+        DataModel.init(this,rutinFragment)
 
         val fragmentmanager = supportFragmentManager
         val fragmentTransaction = fragmentmanager.beginTransaction()
-        fragmentTransaction.add(R.id.activity_fragment,RutinFragment.newInstance(1))    //parameters : 적용할 Activity Layout, 만들 fragment
+        fragmentTransaction.add(R.id.activity_fragment,rutinFragment)    //parameters : 적용할 Activity Layout, 만들 fragment
         fragmentTransaction.commit()
     /*        b.setOnClickListener {
 //            Toast.makeText(this, "adada", Toa st.LENGTH_SHORT).show()

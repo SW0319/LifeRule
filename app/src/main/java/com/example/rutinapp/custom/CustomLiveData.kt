@@ -1,11 +1,12 @@
 package com.example.rutinapp.custom
 
 import androidx.lifecycle.MutableLiveData
+import com.example.rutinapp.Repo.Rutin
 
 //Mutable : 접근 가능한
 //LiveData : 변화를 관찰하는 데이터 홀더
 
-class CustomLiveData<T> : MutableLiveData<MutableList<T>>(){
+class CustomLiveData<T : Any> : MutableLiveData<MutableList<T>>(){
 
     val temp = mutableListOf<T>()   //Rutin List
 
@@ -27,12 +28,18 @@ class CustomLiveData<T> : MutableLiveData<MutableList<T>>(){
 
     fun get(int: Int) : T
     {
-        return temp.get(int)
+        return temp[int]
     }
 
     fun getCount() : Int
     {
         return temp.size
+    }
+    fun update(index:Int, item:T)
+    {
+        temp[index] = item
+        postValue(temp)
+        value = temp
     }
 
 }

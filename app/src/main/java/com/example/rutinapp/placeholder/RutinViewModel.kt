@@ -4,22 +4,23 @@ import android.content.Context
 import android.provider.ContactsContract.Data
 import android.util.Log
 import androidx.lifecycle.LifecycleOwner
+import androidx.recyclerview.widget.RecyclerView
 import com.example.rutinapp.Repo.Rutin
+import com.example.rutinapp.RutinFragment
+import com.example.rutinapp.RutinFragmentAdapter
 import com.example.rutinapp.custom.CustomLiveData
 import kotlinx.coroutines.*
 import java.util.ArrayList
 
-/**
- * Helper class for providing sample content for user interfaces created by
- * Android template wizards.
- *
- * TODO: Replace all uses of this class before publishing your app.
- */
-class RutinViewModel(context: Context){ //선언과 동시에 초기화, MVVM 디자인 패턴의 View Model
+class RutinViewModel(context: Context, rutinFragment: RutinFragment){ //선언과 동시에 초기화, MVVM 디자인 패턴의 View Model
 
     val lists : CustomLiveData<Rutin> = CustomLiveData()
-    private val COUNT = 5  //item Count
+    var rutinFragment: RutinFragment
 
+    init {
+        readItem()
+        this.rutinFragment = rutinFragment
+    }
 
     fun addItem(item: Rutin) {
 
@@ -28,20 +29,20 @@ class RutinViewModel(context: Context){ //선언과 동시에 초기화, MVVM �
         CoroutineScope(Dispatchers.IO).launch {
             DataModel.dao.add(item)
         }
-//          ITEMS.add(item) //이걸 꼭 넣어야되나....
             Log.e("test","아이템 추가")
     }
 
     fun updateItem(item: Rutin)
     {
-
+        lists.update(item.uid,item)
         CoroutineScope(Dispatchers.IO).launch {
             DataModel.dao.update(item)
             Log.e("test","수정 완료")
         }
+
     }
 
-    fun readItem()
+    private fun readItem()
     {
         CoroutineScope(Dispatchers.IO).launch {
             lists.addAll(DataModel.dao.getAllLists())

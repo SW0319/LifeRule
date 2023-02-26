@@ -65,12 +65,15 @@ class DetailActivity : AppCompatActivity() {
                     {
                         rutin.title = titleText
                         rutin.content = contentsText
-
+                        rutin.sunday = toggleLists[0].isChecked
+                        rutin.monday = toggleLists[1].isChecked
+                        rutin.tueday = toggleLists[2].isChecked
+                        rutin.wedday = toggleLists[3].isChecked
+                        rutin.thuday = toggleLists[4].isChecked
+                        rutin.friday = toggleLists[5].isChecked
+                        rutin.satday = toggleLists[6].isChecked
                         DataModel.rutinViewModel.updateItem(rutin)
-
                     }
-
-
                     finish()
                 }
         }
