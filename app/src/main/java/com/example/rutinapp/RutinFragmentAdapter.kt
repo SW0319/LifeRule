@@ -37,34 +37,17 @@ class RutinFragmentAdapter(var values: ArrayList<Rutin>) : RecyclerView.Adapter<
         holder.idView.text = item.title
         holder.contentView.text = item.content
         holder.itemID.text = item.uid.toString()
-        if(item.monday)
-            holder.monday.setTextColor(ContextCompat.getColor(holder.contentView.context,selectedTextColor))
-        else
-            holder.monday.setTextColor(ContextCompat.getColor(holder.contentView.context,notSelectedTextColor))
-        if(item.tueday)
-            holder.tueday.setTextColor(ContextCompat.getColor(holder.contentView.context,selectedTextColor))
-        else
-            holder.tueday.setTextColor(ContextCompat.getColor(holder.contentView.context,notSelectedTextColor))
-        if(item.wedday)
-            holder.wedday.setTextColor(ContextCompat.getColor(holder.contentView.context,selectedTextColor))
-        else
-            holder.wedday.setTextColor(ContextCompat.getColor(holder.contentView.context,notSelectedTextColor))
-        if(item.thuday)
-            holder.thuday.setTextColor(ContextCompat.getColor(holder.contentView.context,selectedTextColor))
-        else
-            holder.thuday.setTextColor(ContextCompat.getColor(holder.contentView.context,notSelectedTextColor))
-        if(item.friday)
-            holder.friday.setTextColor(ContextCompat.getColor(holder.contentView.context,selectedTextColor))
-        else
-            holder.friday.setTextColor(ContextCompat.getColor(holder.contentView.context,notSelectedTextColor))
-        if(item.satday)
-            holder.satday.setTextColor(ContextCompat.getColor(holder.contentView.context,selectedTextColor))
-        else
-            holder.satday.setTextColor(ContextCompat.getColor(holder.contentView.context,notSelectedTextColor))
-        if(item.sunday)
-            holder.sunday.setTextColor(ContextCompat.getColor(holder.contentView.context,selectedTextColor))
-        else
-            holder.sunday.setTextColor(ContextCompat.getColor(holder.contentView.context,notSelectedTextColor))
+
+        var dayLists = arrayOf(item.monday, item.tueday, item.wedday, item.thuday, item.friday, item.satday, item.sunday)
+        var holderLists = arrayOf(holder.monday, holder.tueday, holder.wedday, holder.thuday, holder.friday, holder.satday, holder.sunday)
+        for (i in 0..6)
+        {
+            if(dayLists[i])
+                holderLists[i].setTextColor(ContextCompat.getColor(holder.contentView.context,selectedTextColor))
+            else
+                holderLists[i].setTextColor(ContextCompat.getColor(holder.contentView.context,notSelectedTextColor))
+        }
+
     }
 
 
