@@ -1,20 +1,15 @@
 package com.example.rutinapp.placeholder
 
 import android.content.Context
-import android.provider.ContactsContract.Data
 import android.util.Log
-import androidx.lifecycle.LifecycleOwner
-import androidx.recyclerview.widget.RecyclerView
 import com.example.rutinapp.Repo.Rutin
 import com.example.rutinapp.RutinFragment
-import com.example.rutinapp.RutinFragmentAdapter
-import com.example.rutinapp.custom.CustomLiveData
 import kotlinx.coroutines.*
 import java.util.ArrayList
 
 class RutinViewModel(context: Context, rutinFragment: RutinFragment){ //선언과 동시에 초기화, MVVM 디자인 패턴의 View Model
 
-    val lists : CustomLiveData<Rutin> = CustomLiveData()
+    val lists : ArrayList<Rutin> = ArrayList()
     var rutinFragment: RutinFragment
 
     init {
@@ -29,16 +24,18 @@ class RutinViewModel(context: Context, rutinFragment: RutinFragment){ //선언�
         CoroutineScope(Dispatchers.IO).launch {
             DataModel.dao.add(item)
         }
-            Log.e("test","아이템 추가")
+        RutinFragment.rutinFragmentAdapter.notifyItemInserted(lists.size)
     }
 
     fun updateItem(item: Rutin)
     {
-        lists.update(item.uid,item)
-        CoroutineScope(Dispatchers.IO).launch {
+        lists[item.uid-1] = item
+        Log.e("test","lists[${item.uid-1}] = ${lists[item.uid-1].sunday} , ${lists[item.uid-1].monday} , ${lists[item.uid-1].tueday} , ${lists[item.uid-1].wedday} , " +
+                "${lists[item.uid-1].thuday} , ${lists[item.uid-1].friday} , ${lists[item.uid-1].satday}")
+        runBlocking(Dispatchers.IO) {
             DataModel.dao.update(item)
-            Log.e("test","수정 완료")
         }
+        RutinFragment.rutinFragmentAdapter.notifyItemChanged(item.uid-1)
 
     }
 
@@ -46,7 +43,6 @@ class RutinViewModel(context: Context, rutinFragment: RutinFragment){ //선언�
     {
         CoroutineScope(Dispatchers.IO).launch {
             lists.addAll(DataModel.dao.getAllLists())
-
         }
     }
 

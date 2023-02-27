@@ -15,6 +15,7 @@ import com.example.rutinapp.placeholder.RutinViewModel
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.runBlocking
 
 class DetailActivity : AppCompatActivity() {
 
@@ -72,7 +73,10 @@ class DetailActivity : AppCompatActivity() {
                         rutin.thuday = toggleLists[4].isChecked
                         rutin.friday = toggleLists[5].isChecked
                         rutin.satday = toggleLists[6].isChecked
-                        DataModel.rutinViewModel.updateItem(rutin)
+                        runBlocking {
+                            DataModel.rutinViewModel.updateItem(rutin)
+                        }
+
                     }
                     finish()
                 }

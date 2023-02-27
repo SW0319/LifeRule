@@ -43,14 +43,9 @@ class RutinFragment : Fragment() {
                     columnCount <= 1 -> LinearLayoutManager(context)
                     else -> GridLayoutManager(context, columnCount)
                 }
-                adapter = RutinFragmentAdapter(DataModel.rutinViewModel.lists).apply {
-                         values.observe(viewLifecycleOwner)
-                         {
-                            Log.e("test","observe")
-                             adapter?.notifyDataSetChanged()
 
-                         }
-                }
+                rutinFragmentAdapter =RutinFragmentAdapter(DataModel.rutinViewModel.lists)
+                view.adapter = rutinFragmentAdapter
             }
         }
         return view
@@ -58,6 +53,7 @@ class RutinFragment : Fragment() {
 
     companion object {
 
+        lateinit var rutinFragmentAdapter: RutinFragmentAdapter
         // TODO: Customize rameter argument names
         const val ARG_COLUMN_COUNT = "column-count"
 
