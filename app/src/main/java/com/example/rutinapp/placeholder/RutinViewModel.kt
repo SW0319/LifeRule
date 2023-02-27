@@ -19,8 +19,8 @@ class RutinViewModel(context: Context, rutinFragment: RutinFragment){ //선언�
 
     fun addItem(item: Rutin) {
 
-            lists.add(item)
-
+        item.uid =DataModel.rutinViewModel.lists.size + 1
+        lists.add(item)
         CoroutineScope(Dispatchers.IO).launch {
             DataModel.dao.add(item)
         }

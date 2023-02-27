@@ -7,7 +7,7 @@ import androidx.room.PrimaryKey
 @Entity(tableName = "RutinList")
 data class Rutin(
 
-    @PrimaryKey(autoGenerate = true) val uid: Int = 0,
+    @PrimaryKey(autoGenerate = true) var uid: Int = 0,
     var title: String?,
     var content: String?,
     var monday: Boolean = true,
